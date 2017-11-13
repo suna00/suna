@@ -388,6 +388,8 @@
     responseMap.put("cashIdInfo", cash_id_info);
     responseMap.put("cashNo", cash_no);
 
+    responseMap.put("purchaseDeviceType", "mobile");
+
     /*Delivery*/
     responseMap.put("addressName", addressName);
     responseMap.put("shippingAddress", shippingAddress);

@@ -478,12 +478,16 @@ public class OrderService {
                 totalDeliveryPrice += JsonUtils.getDoubleValue(deliveryItem, "deliveryPrice");
             }
         }
-        /*휴대폰구매*/
-        if(cellPhonePaymentMode){
-            totalProductPrice = 0D;
-        }
         totalOrderPrice = totalProductPrice - YPoint - welfarePoint + totalDeliveryPrice; //총 주문금액
         totalDiscountPrice = totalDiscountPrice + YPoint + welfarePoint;
+
+        /*휴대폰구매*/
+        if(cellPhonePaymentMode){
+            totalProductPrice = 1D;
+            totalDiscountPrice = 1D;
+            totalOrderPrice = 0D;
+        }
+
         if (!StringUtils.equals(totalPaymentPrice.toString(), totalOrderPrice.toString())) {
             context.setResult(CommonService.getResult("O0006"));
             return context;
@@ -537,8 +541,8 @@ public class OrderService {
         }
 
 
+        storeOrderSheet.put("purchaseDeviceType", JsonUtils.getStringValue(data,"purchaseDeviceType"));
         storeOrderSheet.put("purchaseaAgreementYn", "y");
-        storeOrderSheet.put("purchaseDeviceType", "");
         nodeService.executeNode(storeOrderSheet, "orderSheet", CommonService.CREATE);
 
 
@@ -792,7 +796,7 @@ public class OrderService {
         storeOrderSheet.put("purchaseAgreementYn", "y");
         storeOrderSheet.put("usePayMethod", JsonUtils.getStringValue(responseMap, "usePayMethod"));
         storeOrderSheet.put("usePayMethodName", JsonUtils.getStringValue(responseMap, "usePayMethodName"));
-        storeOrderSheet.put("purchaseDeviceType", "");
+        storeOrderSheet.put("purchaseDeviceType", JsonUtils.getStringValue(responseMap,"purchaseDeviceType"));
         nodeService.executeNode(storeOrderSheet, "orderSheet", CommonService.CREATE);
 
 
