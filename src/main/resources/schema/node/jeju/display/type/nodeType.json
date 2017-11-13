@@ -19,24 +19,6 @@
   {
     "parentId": "displayPath",
     "typeId": "nodeType",
-    "tid": "bannerElement",
-    "typeName": "배너 구성",
-    "tableName": "jejuDevDb#bannerElement",
-    "repositoryType": "node",
-    "eviction": 0
-  },
-  {
-    "parentId": "displayPath",
-    "typeId": "nodeType",
-    "tid": "bannerMap",
-    "typeName": "배너 매핑",
-    "tableName": "jejuDevDb#bannerMap",
-    "repositoryType": "node",
-    "eviction": 0
-  },
-  {
-    "parentId": "displayPath",
-    "typeId": "nodeType",
     "tid": "category",
     "typeName": "카테고리",
     "tableName": "jejuDevDb#category",

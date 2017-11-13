@@ -991,9 +991,9 @@
   },
   {
     "typeId": "commonCode",
-    "code": "fix",
+    "code": "main",
     "upperCode": "bannerType",
-    "name": "고정",
+    "name": "메인 키배너",
     "description": "",
     "sortOrder": "1",
     "commonCodeStatus": "y"
@@ -1002,9 +1002,63 @@
     "typeId": "commonCode",
     "code": "slide",
     "upperCode": "bannerType",
-    "name": "슬라이드",
+    "name": "슬라이딩배너",
     "description": "",
     "sortOrder": "2",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "marketing",
+    "upperCode": "bannerType",
+    "name": "마케팅 띠 배너",
+    "description": "",
+    "sortOrder": "3",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "brandPromotion",
+    "upperCode": "bannerType",
+    "name": "브랜드 프로모션 배너",
+    "description": "",
+    "sortOrder": "4",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "leftMarketing",
+    "upperCode": "bannerType",
+    "name": "좌측 마케팅 배너",
+    "description": "",
+    "sortOrder": "5",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "touristInfo",
+    "upperCode": "bannerType",
+    "name": "관광정보 배너",
+    "description": "",
+    "sortOrder": "6",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "newBrand",
+    "upperCode": "bannerType",
+    "name": "신규 입점 브랜드 배너",
+    "description": "",
+    "sortOrder": "7",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "themeShop",
+    "upperCode": "bannerType",
+    "name": "테마샵 배너",
+    "description": "",
+    "sortOrder": "8",
     "commonCodeStatus": "y"
   },
   {
@@ -4992,6 +5046,24 @@
     "name": "상품",
     "description": "",
     "sortOrder": "3",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "category",
+    "upperCode": "linkContentsType",
+    "name": "카테고리연결",
+    "description": "",
+    "sortOrder": "4",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "url",
+    "upperCode": "linkContentsType",
+    "name": "url직접입력",
+    "description": "",
+    "sortOrder": "5",
     "commonCodeStatus": "y"
   },
   {
