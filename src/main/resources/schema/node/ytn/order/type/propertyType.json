@@ -2555,6 +2555,22 @@
   },
   {
     "typeId": "propertyType",
+    "tid": "orderSheet",
+    "pid": "referencedOrderProductItem",
+    "propertyTypeName": "referenced주문서상품아이템",
+    "valueType": "REFERENCED",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "orderProductItem",
+    "referenceValue": "orderProductId",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
     "tid": "orderProduct",
     "pid": "orderProductId",
     "propertyTypeName": "ID",

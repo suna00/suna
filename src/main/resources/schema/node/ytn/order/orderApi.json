@@ -38,7 +38,7 @@
               "query" : [
                 {"field" : "orderSheetId", "method" : "equals", "value" : "{{:orderSheetId}}"},
                 {"field" : "orderProductId", "method" : "in", "value" : "{{:orderProductIds}}"},
-                {"includeReferenced" : "vendorId", "referenceView": "deliveryEnterpriseId,vendorId"}
+                {"includeReferenced" : "vendorId,referencedOrderProductItem", "referenceView": "deliveryEnterpriseId,vendorId"}
               ],
               "response": {
                 "_all_": "",

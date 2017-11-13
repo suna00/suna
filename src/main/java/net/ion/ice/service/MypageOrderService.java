@@ -131,6 +131,9 @@ public class MypageOrderService {
 
                 Map<String, Object> orderDeliveryPrice = getOrderDeliveryPrice(JsonUtils.getStringValue(op, "orderSheetId"), JsonUtils.getStringValue(op, "orderProductId"));
                 op.put("referencedOrderDeliveryPrice", orderDeliveryPrice);
+
+                List<Map<String, Object>> orderProductItems = nodeBindingService.list("orderProductItem", "orderProductId_equals=" + JsonUtils.getStringValue(op, "orderProductId"));
+                op.put("referencedOrderProductItem", orderProductItems);
                 op.put("functionBtn", getFunctionBtn(orderDeliveryPrice, op, product));
                 commonService.putReferenceValue("orderProduct", context, op);
             }
