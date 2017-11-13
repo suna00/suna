@@ -357,11 +357,11 @@ public class EmailService {
         sendEmailDirect(email, title, contents);
     }
 
-    public void setHtmlMemberLeave(Map<String, Object> data) throws IOException {
+    public void setHtmlMemberLeave(Node node) throws IOException {
         // 회원탈퇴 ./pc_markup/DE_SL_FR_26_009.html
         // data : name, userId, date, point, link
 
-        String siteId = data.get("siteId").toString();
+        String siteId = node.getBindingValue("siteId").toString();
         String header = getHeader(siteId);
         String footer = getFooter(siteId);
 
@@ -371,14 +371,14 @@ public class EmailService {
 
         contents = contents.replaceAll("<img src=\"header\">", header);
         contents = contents.replaceAll("../assets/images", callBackUrl+"image");
-        contents = contents.replaceAll("::name::", data.get("name").toString());
-        contents = contents.replaceAll("::userId::", data.get("userId").toString());
-        contents = contents.replaceAll("::date::", data.get("leaveDate").toString());
-        contents = contents.replaceAll("::point::", data.get("YPoint").toString());
+        contents = contents.replaceAll("::name::", node.get("name").toString());
+        contents = contents.replaceAll("::userId::", node.get("userId").toString());
+        contents = contents.replaceAll("::date::", new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+        contents = contents.replaceAll("::point::", node.get("YPoint").toString());
         contents = contents.replaceAll("::link::", callBackUrl+siteId);
         contents = contents.replaceAll("<img src=\"footer\">", footer);
 
-        sendEmailDirect(data.get("email").toString(), title, contents);
+        sendEmailDirect(node.get("email").toString(), title, contents);
     }
 
     public void setHtmlMemberSleepCancel(String email) throws IOException {

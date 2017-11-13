@@ -656,7 +656,7 @@ public class MemberService {
         node.put("memberStatus", "leave");
         nodeService.executeNode(node, "member", commonService.UPDATE);
 
-        emailService.setHtmlMemberLeave(data);
+        emailService.setHtmlMemberLeave(node);
 
         return context;
     }
