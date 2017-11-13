@@ -1886,9 +1886,9 @@
     "productOptionSetId": "",
     "baseOptionType": "single",
     "addOptionType": "n",
-    "cellphoneLinkForNew": "",
-    "cellphoneLinkForMove": "",
-    "cellphoneLinkForChange": "",
+    "cellphoneLinkForNew": "http://www.naver.com",
+    "cellphoneLinkForMove": "http://www.daum.net",
+    "cellphoneLinkForChange": "http://www.goole.co.kr",
     "releaseDate": 20170914000000
   },
   {
