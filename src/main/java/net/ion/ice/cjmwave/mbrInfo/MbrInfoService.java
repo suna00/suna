@@ -114,9 +114,9 @@ public class MbrInfoService {
 
     public void rglrMbrJoin(ExecuteContext context) {
 
-        if(!captchaService.validate(context.getHttpRequest())){
-            throw new ApiException("431", "Invalid condition");
-        }
+//        if(!captchaService.validate(context.getHttpRequest())){
+//            throw new ApiException("431", "Invalid condition");
+//        }
 
         if (jdbcTemplate == null) {
             jdbcTemplate = NodeUtils.getNodeBindingService().getNodeBindingInfo("mbrInfo").getJdbcTemplate();

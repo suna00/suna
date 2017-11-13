@@ -7,14 +7,14 @@ import com.amazonaws.regions.RegionUtils;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapperConfig;
+import com.amazonaws.tomcatsessionmanager.amazonaws.services.dynamodb.sessionmanager.DynamoSessionItem;
 import com.amazonaws.tomcatsessionmanager.amazonaws.services.dynamodb.sessionmanager.converters.SessionConversionException;
 import com.amazonaws.util.IOUtils;
 
 import java.io.*;
 import java.util.*;
 
-import org.apache.catalina.Session;
-import org.apache.catalina.session.StandardSession;
+
 import org.apache.catalina.util.CustomObjectInputStream;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -57,8 +57,8 @@ public class CaptchaService {
 
     @PostConstruct
     public void initDynamoMapper(){
-        this.amazonDynamoDB =  createDynamoClient();
-        this.dynamoDBMapper = new DynamoDBMapper(amazonDynamoDB, new DynamoDBMapperConfig(new DynamoDBMapperConfig.TableNameOverride("MWAVE_SESSION")));
+//        this.amazonDynamoDB =  createDynamoClient();
+//        this.dynamoDBMapper = new DynamoDBMapper(amazonDynamoDB, new DynamoDBMapperConfig(new DynamoDBMapperConfig.TableNameOverride("MWAVE_SESSION")));
     }
 
     /**
@@ -161,12 +161,16 @@ public class CaptchaService {
         if (sessionItem != null) {
             return toSession(sessionItem);
         } else {
+            logger.info("session null : ");
             return null;
         }
 
     }
 
     public ConcurrentMap<String, Object> toSession(DynamoSessionItem sessionItem) {
+        logger.info("session item : " + sessionItem);
+        logger.info("session data objc : " + sessionItem.getSessionData());
+
         ObjectInputStream ois = null;
         try {
             ByteArrayInputStream fis = new ByteArrayInputStream(sessionItem.getSessionData().array());
@@ -192,6 +196,8 @@ public class CaptchaService {
         Object principal = null;        // Transient only
         //        setId((String) stream.readObject());
         String id = (String) stream.readObject();
+        logger.info("session id : " + id);
+
         // Deserialize the attribute count and attribute values
         ConcurrentMap<String, Object> attributes = new ConcurrentHashMap<>();
         int n = ((Integer) stream.readObject()).intValue();
