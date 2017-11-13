@@ -211,7 +211,7 @@ public class AdminOrderService {
         }
         String baseSql = "select %s from orderProduct a, orderSheet b, member c, vendor d, delivery e where a.orderSheetId = b.orderSheetId and b.memberNo = c.memberNo and a.vendorId = d.vendorId and b.orderSheetId = e.orderSheetId %s %s";
 
-        String countSql =  String.format(baseSql, "a.orderStatus, count(*) as cnt ", searchListQuery.size()>0 ?  " and " : "" +  StringUtils.join(searchListQuery.toArray(), " AND "), " group by a.orderStatus");
+        String countSql =  String.format(baseSql, "a.orderStatus, count(distinct(b.orderSheetId)) as cnt, sum(b.totalPaymentPrice) as totalPaymentPrice ", (searchListQuery.size()>0 ?  " and " : "") +  StringUtils.join(searchListQuery.toArray(), " AND "), " group by a.orderStatus");
 
         NodeType nodeType = NodeUtils.getNodeType(orderSheet_TID);
         JdbcTemplate jdbcTemplate = DBService.getJdbc(nodeType.getDsId());
@@ -222,7 +222,7 @@ public class AdminOrderService {
             searchListQuery.add("a.orderStatus in (" + StringUtils.join(inOrderStatus, ",") + ")");
         }
 
-        String totalCountSql =  String.format(baseSql, "count(*) as totalCount", " and " + StringUtils.join(searchListQuery.toArray(), " AND "), "");
+        String totalCountSql =  String.format(baseSql, "count(distinct(b.orderSheetId)) as totalCount, sum(b.totalPaymentPrice) as totalPaymentPrice ", " and " + StringUtils.join(searchListQuery.toArray(), " AND "), "");
         Map<String, Object> totalCount = jdbcTemplate.queryForMap(totalCountSql, searchListValue.toArray());
 
 
