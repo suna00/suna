@@ -405,6 +405,7 @@ public class OrderService {
                 storeOrderProduct.put("baseOptionItemName", JsonUtils.getStringValue(product, "baseOptionItem.name"));
                 storeOrderProduct.put("quantity", JsonUtils.getIntValue(product, "quantity"));
                 storeOrderProduct.put("salePrice", JsonUtils.getDoubleValue(product, "salePrice"));
+                storeOrderProduct.put("phoneGubun", JsonUtils.getStringValue(product, "phoneGubun"));
                 storeOrderProduct.put("baseAddPrice", JsonUtils.getDoubleValue(product, "baseAddPrice"));
                 storeOrderProduct.put("productPrice", JsonUtils.getDoubleValue(product, "productPrice"));
                 storeOrderProduct.put("totalAddOptionPrice", JsonUtils.getDoubleValue(product, "totalAddOptionPrice"));
@@ -477,12 +478,16 @@ public class OrderService {
                 totalDeliveryPrice += JsonUtils.getDoubleValue(deliveryItem, "deliveryPrice");
             }
         }
-        /*휴대폰구매*/
-        if(cellPhonePaymentMode){
-            totalProductPrice = 0D;
-        }
         totalOrderPrice = totalProductPrice - YPoint - welfarePoint + totalDeliveryPrice; //총 주문금액
         totalDiscountPrice = totalDiscountPrice + YPoint + welfarePoint;
+
+        /*휴대폰구매*/
+        if(cellPhonePaymentMode){
+            totalProductPrice = 1D;
+            totalDiscountPrice = 1D;
+            totalOrderPrice = 0D;
+        }
+
         if (!StringUtils.equals(totalPaymentPrice.toString(), totalOrderPrice.toString())) {
             context.setResult(CommonService.getResult("O0006"));
             return context;
@@ -536,8 +541,8 @@ public class OrderService {
         }
 
 
+        storeOrderSheet.put("purchaseDeviceType", JsonUtils.getStringValue(data,"purchaseDeviceType"));
         storeOrderSheet.put("purchaseaAgreementYn", "y");
-        storeOrderSheet.put("purchaseDeviceType", "");
         nodeService.executeNode(storeOrderSheet, "orderSheet", CommonService.CREATE);
 
 
@@ -575,12 +580,12 @@ public class OrderService {
             if(cellPhonePaymentMode){
                 storePayment.put("orderSheetId", orderSheetId);
                 storePayment.put("memberNo", memberNo);
-                storePayment.put("usePayMethod", JsonUtils.getStringValue(data, "usePayMethod"));
+                storePayment.put("usePayMethod", "999999999999");
                 storePayment.put("usePayMethodName", "휴대폰쿠폰결제");
             }else{
                 storePayment.put("orderSheetId", orderSheetId);
                 storePayment.put("memberNo", memberNo);
-                storePayment.put("usePayMethod", JsonUtils.getStringValue(data, "usePayMethod"));
+                storePayment.put("usePayMethod", "111111111111");
                 storePayment.put("usePayMethodName", "포인트결제");
             }
         }
@@ -700,6 +705,7 @@ public class OrderService {
                 storeOrderProduct.put("baseOptionItemName", JsonUtils.getStringValue(product, "baseOptionItem.name"));
                 storeOrderProduct.put("quantity", JsonUtils.getIntValue(product, "quantity"));
                 storeOrderProduct.put("salePrice", JsonUtils.getDoubleValue(product, "salePrice"));
+                storeOrderProduct.put("phoneGubun", JsonUtils.getStringValue(product, "phoneGubun"));
                 storeOrderProduct.put("baseAddPrice", JsonUtils.getDoubleValue(product, "baseAddPrice"));
                 storeOrderProduct.put("productPrice", JsonUtils.getDoubleValue(product, "productPrice"));
                 storeOrderProduct.put("totalAddOptionPrice", JsonUtils.getDoubleValue(product, "totalAddOptionPrice"));
@@ -790,7 +796,7 @@ public class OrderService {
         storeOrderSheet.put("purchaseAgreementYn", "y");
         storeOrderSheet.put("usePayMethod", JsonUtils.getStringValue(responseMap, "usePayMethod"));
         storeOrderSheet.put("usePayMethodName", JsonUtils.getStringValue(responseMap, "usePayMethodName"));
-        storeOrderSheet.put("purchaseDeviceType", "");
+        storeOrderSheet.put("purchaseDeviceType", JsonUtils.getStringValue(responseMap,"purchaseDeviceType"));
         nodeService.executeNode(storeOrderSheet, "orderSheet", CommonService.CREATE);
 
 
@@ -962,6 +968,7 @@ public class OrderService {
                 String baseOptionItemId = String.valueOf(JsonUtils.getValue(product, "baseOptionItemId"));
                 Integer quantity = (Integer) JsonUtils.getValue(product, "quantity");
                 List<Map<String, Object>> productItemList = product.get("productItem") != null ? (List<Map<String, Object>>) product.get("productItem") : null;
+                String phoneGubun = JsonUtils.getStringValue(product, "phoneGubun");
                 List<Map<String, Object>> storeProductItemList = new ArrayList<>();
                 Map<String, Object> storeTempOrderProduct = new HashMap<>();
 
@@ -979,7 +986,7 @@ public class OrderService {
                 storeTempOrderProduct.put("quantity", quantity);
                 storeTempOrderProduct.put("salePrice", salePrice);
                 storeTempOrderProduct.put("vendorId", productNode.getBindingValue("vendorId"));
-
+                storeTempOrderProduct.put("phoneGubun", phoneGubun);
 
                 if (productItemList != null) {
                     for (Map<String, Object> productItem : productItemList) {
